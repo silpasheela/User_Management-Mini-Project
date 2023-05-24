@@ -1,0 +1,51 @@
+<% include ('../layouts/header.ejs') %>
+
+<title>Admin Homepage</title>
+<link rel="shortcut icon" href="http://cdn.onlinewebfonts.com/svg/img_365068.png" type="image/x-icon">
+
+<style>
+.re {
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  color: #fdbb2d
+}
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.main {
+  background-image: url("https://t3.ftcdn.net/jpg/02/88/60/20/360_F_288602027_ZBkFOd3bUERb1W7NqbRo4g2jpoCSQZRq.jpg");
+  height: 100%;
+}
+.tab {
+
+  color: #02761d;
+  font-size: large;
+  font-weight:bold;
+  font-style: italic;
+  text-align: center;
+}
+.link {
+  color: rgb(3, 3, 115);
+  font-weight: bolder;
+}
+</style>
+<div class="main">
+  <div class="re text-center center-div mt-5">
+    <div class="container w-25 py-5 mt-5 ">
+      <h1><%= admin.name %>'s Homepage</h1>
+    </div>
+  </div>
+  <div class="flex justify-between">
+    <a href="/admin/dashboard" class="link"><h2>Dashboard</h3></a>
+    <a href="/admin/logout" class="link"><h2>Logout</h3></a>
+  </div><br>
+  <p class="tab">Welcome <%= admin.name %>!<br><br>
+    Here you can perform various user data operations such as View, Search, Create, Delete, Update etc. </p>
+</div>
+
+<% include ('../layouts/footer.ejs') %>

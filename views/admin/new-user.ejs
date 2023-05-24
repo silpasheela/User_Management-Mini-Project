@@ -1,0 +1,90 @@
+<% include('../layouts/header.ejs') %>
+<title>Admin Dashboard</title>
+<link rel="shortcut icon" href="http://cdn.onlinewebfonts.com/svg/img_365068.png" type="image/x-icon">
+
+<head>
+  <style>
+     span{
+      color: red;
+      font-size: small;
+    }
+  </style>
+</head>
+
+<h1 style="text-align: center; color: #fca442; font-weight: bolder;">Add New User</h1>
+
+<form action="" method="post" onsubmit="return allChecking()">
+  <input type="text" name="name" placeholder="Enter your name" id="name" onchange="nameChecking()" />
+  <br /><span id="Name"></span><br />
+  <input type="email" name="email" placeholder="Enter email address" id="email" onchange="emailChecking()" />
+  <br /><span id="Email"></span><br />
+  <input type="text" name="mno" placeholder="Enter phone number" id="number" onchange="numberChecking()" />
+  <br /><span id="Number"></span><br />
+  <input type="password" name="password" placeholder="Enter password" id="password" onchange="passwordChecking()"/>
+  <br /><span id="Password"></span><br />
+  <input type="submit" value="Add User" onclick="nameChecking(),emailChecking(),numberChecking(),passwordChecking()" />
+</form>
+
+<% if(typeof message !=='undefined' ) { %>
+<p style="color: red"><%= message %></p>
+<% } %>
+<a href="/admin/dashboard">Go Back</a>
+
+<script>
+  function nameChecking(){
+  let name=document.getElementById("name").value;
+   if(name ==""){
+    document.getElementById("Name").innerHTML="Please enter the name";
+    return false
+     }else{
+      document.getElementById("Name").innerHTML="";
+        return true
+     }
+}
+function emailChecking(){
+  let emailId=document.getElementById("email").value;
+  console.log("emailId"+emailId);
+  if(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(emailId)==false){
+    document.getElementById("Email").innerHTML="Please enter a valid email address";
+    return false;
+  }else{
+    document.getElementById("Email").innerHTML="";
+    return true;
+  }
+}
+function numberChecking(){
+  let number=document.getElementById("number").value;
+   if(/^[0-9]+$/.test(number)==false){
+    document.getElementById("Number").innerHTML="Please enter a valid phone number";
+    return false
+   }
+  else if(number.length != 10){
+    document.getElementById("Number").innerHTML="Please enter password";
+    return false
+     }else{
+      document.getElementById("Number").innerHTML="";
+        return true
+     }
+}
+let password=document.getElementById("password").value; 
+function passwordChecking(){
+  password=document.getElementById("password").value; 
+   if(password.length <8){
+    document.getElementById("Password").innerHTML="Password must be at least 8 characters";
+    return false
+     }else{
+      document.getElementById("Password").innerHTML="";
+        return true
+     }
+}
+function allChecking(){
+  if(nameChecking()&&emailChecking()&&numberChecking()&&passwordChecking()){
+    return true
+  }else{
+    return false
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<% include('../layouts/footer.ejs') %>
